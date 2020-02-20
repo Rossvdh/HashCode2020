@@ -10,7 +10,6 @@ public class ProblemReaderTest {
 
     ProblemReader problemReader;
 
-
     @Test
     public void readFile() {
 
@@ -19,6 +18,5 @@ public class ProblemReaderTest {
         final ProblemSet problemSet = problemReader.readFile();
 
         System.out.println(problemSet);
-
     }
 }

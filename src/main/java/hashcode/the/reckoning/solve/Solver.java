@@ -6,5 +6,4 @@ import hashcode.the.reckoning.domain.output.Solution;
 public interface Solver {
 
     Solution solve(ProblemSet input);
-
 }

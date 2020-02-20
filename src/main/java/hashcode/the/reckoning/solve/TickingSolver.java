@@ -8,7 +8,6 @@ import hashcode.the.reckoning.domain.output.Solution;
  */
 public class TickingSolver implements Solver {
 
-
     @Override
     public Solution solve(final ProblemSet input) {
 

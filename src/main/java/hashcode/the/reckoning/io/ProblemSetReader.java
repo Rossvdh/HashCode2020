@@ -55,8 +55,6 @@ public class ProblemSetReader {
         return problemSet;
     }
 
-
-
     public List<String> readFromFile(final String fileName) {
         URL resource = Main.class.getResource(fileName);
         File file = new File(resource.getFile());

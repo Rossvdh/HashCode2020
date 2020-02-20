@@ -16,24 +16,22 @@ public class SolutionWriter {
 
         File file = new File("./target/" + filename);
 
-        List<String> lines = parse(result);
 
         try {
-            Files.asCharSink(file,UTF_8).writeLines(lines);
+            Files.asCharSink(file, UTF_8).write(result.toString());
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
     }
 
-    public List<String> parse(final Solution result) {
-        List<String> parsedList = new ArrayList<>();
-        /*for(Vechile vechile : result.getVechileList()) {
-            if(vechile.getRides().size() > 0){
-                parsedList.add(vechile.print());
-            }
-        }*/
-        return parsedList;
-    }
+    //public List<String> parse(final Solution result) {
+    //    List<String> parsedList = new ArrayList<>();
+    //    /*for(Vechile vechile : result.getVechileList()) {
+    //        if(vechile.getRides().size() > 0){
+    //            parsedList.add(vechile.print());
+    //        }
+    //    }*/
+    //    return parsedList;
+    //}
 }

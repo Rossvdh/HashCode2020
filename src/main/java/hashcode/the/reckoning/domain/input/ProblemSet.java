@@ -20,5 +20,4 @@ public class ProblemSet {
     long nrBooks;
     HashMap<Long, Long> booksAndRatingsMap = new HashMap<>();
     List<Library> libraries;
-
 }

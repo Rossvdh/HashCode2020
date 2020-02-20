@@ -1,21 +1,20 @@
 package hashcode.the.reckoning.io;
 
 import com.google.common.base.Splitter;
-import hashcode.the.reckoning.Main;
 import hashcode.the.reckoning.domain.input.Book;
 import hashcode.the.reckoning.domain.input.Library;
 import hashcode.the.reckoning.domain.input.ProblemSet;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.google.common.base.Charsets.UTF_16;
 import static com.google.common.base.Charsets.UTF_8;
 
 public class ProblemReader {
@@ -70,7 +69,12 @@ public class ProblemReader {
                 book.setScore(booksAndRatingsMap.get(libraryBookId));
                 books.add(book);
             }
-
+            Collections.sort(books, new Comparator<Book>() {
+                @Override
+                public int compare(Book o1, Book o2) {
+                    return (int) (o2.getScore() - o1.getScore());
+                }
+            });
             library.setListOfBooks(books);
             libraries.add(library);
         }
@@ -87,7 +91,6 @@ public class ProblemReader {
 
     public List<String> readFromFile(final String fileName) {
         File file = new File(".\\src\\main\\resources\\hashcode\\the\\reckoning\\" + fileName);
-
 
         try {
             final List<String> lines = com.google.common.io.Files.readLines(file, UTF_8);
