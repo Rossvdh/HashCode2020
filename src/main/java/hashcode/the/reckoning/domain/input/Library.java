@@ -28,7 +28,7 @@ public class Library {
         return this.listOfBooks.stream().filter(new Predicate<Book>() {
             @Override
             public boolean test(Book book) {
-                return hasBookBeenAdded.get(book.getId());
+                return hasBookBeenAdded.containsKey(book.getId());
             }
         }).collect(Collectors.toList());
     }
