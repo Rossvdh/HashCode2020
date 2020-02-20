@@ -1,10 +1,12 @@
 package hashcode.the.reckoning.domain.input;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class Library {
     long id;
     long nrBooks;

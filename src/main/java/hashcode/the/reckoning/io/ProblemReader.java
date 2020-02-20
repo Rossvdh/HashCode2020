@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.google.common.base.Charsets.UTF_16;
 import static com.google.common.base.Charsets.UTF_8;
 
 public class ProblemReader {
@@ -74,6 +75,8 @@ public class ProblemReader {
             libraries.add(library);
         }
 
+        problemSet.setLibraries(libraries);
+
         return problemSet;
     }
 
@@ -83,8 +86,8 @@ public class ProblemReader {
     }
 
     public List<String> readFromFile(final String fileName) {
-        URL resource = Main.class.getResource(fileName);
-        File file = new File(resource.getFile());
+        File file = new File(".\\src\\main\\resources\\hashcode\\the\\reckoning\\" + fileName);
+
 
         try {
             final List<String> lines = com.google.common.io.Files.readLines(file, UTF_8);

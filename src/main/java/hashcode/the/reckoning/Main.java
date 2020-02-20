@@ -17,24 +17,20 @@ public class Main {
 
         List<String> fileList = new ArrayList<>();
         fileList.add("a_example");
-        fileList.add("b_should_be_easy");
-        fileList.add("c_no_hurry");
-        fileList.add("d_metropolis");
-        fileList.add("e_high_bonus");
 
         fileList.forEach( filename -> {
-            System.out.println(filename + ".in");
+            System.out.println(filename + ".txt");
 
             System.out.println("Input");
-            ProblemReader reader = new ProblemReader(filename + ".in");
+            ProblemReader reader = new ProblemReader(filename + ".txt");
             ProblemSet input = reader.readFile();
 
             System.out.println("Solving");
-            Solution result = solveProblem(input);
+            //Solution result = solveProblem(input);
 
-            System.out.println("Output");
+            /*System.out.println("Output");
             generateOutput(filename + ".out", result);
-            System.out.println("Done " + filename);
+            System.out.println("Done " + filename);*/
         });
 
     }
