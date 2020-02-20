@@ -14,8 +14,7 @@ public class SolutionWriter {
 
     public void writeToFile(String filename, Solution result) {
 
-        File file = new File("./target/" + filename);
-
+        File file = new File("./" + filename);
 
         try {
             Files.asCharSink(file, UTF_8).write(result.toString());

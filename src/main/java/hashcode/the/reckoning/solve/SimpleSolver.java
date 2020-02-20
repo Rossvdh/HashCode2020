@@ -7,6 +7,7 @@ import hashcode.the.reckoning.domain.output.Solution;
 import hashcode.the.reckoning.domain.output.SolutionLibrary;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class SimpleSolver implements Solver {
             int index = startLibraryIndex;
             long daysRemaining = problemSet.getTotalDaysToScan();
             Solution currentSolution = new Solution();
+            HashMap<Long, Boolean> hasBookBeenAdded = new HashMap<>();
+
             List<Library> libariesToBeUsed = new ArrayList<>();
             libariesToBeUsed.addAll(problemSet.getLibraries());
 
@@ -29,7 +32,6 @@ public class SimpleSolver implements Solver {
                 if (libariesToBeUsed.size() <= index) {
                     index = 0;
                 }
-
 
                 // Get and remove to mark library as used.
                 Library library = libariesToBeUsed.get(index);
@@ -42,18 +44,21 @@ public class SimpleSolver implements Solver {
                 solutionLibrary.setLibraryId(library.getId());
 
                 long intBooksThatCanBeProcessed = daysRemaining * library.getBooksPerDay();
-                List<Book> listOfBooks = library.getListOfBooks();
+                List<Book> listOfBooks = library.getDistinctBooks(hasBookBeenAdded);
                 if (intBooksThatCanBeProcessed > 0) {
                     for (int bookIndex = 0; bookIndex < listOfBooks.size(); bookIndex++) {
                         Book book = listOfBooks.get(bookIndex);
                         if (bookIndex < intBooksThatCanBeProcessed) {
                             solutionLibrary.addLibrarySolution(book);
+                            hasBookBeenAdded.put(book.getId(), true);
                         } else {
                             break;
                         }
                     }
                 }
-                currentSolution.addLibrarySolution(solutionLibrary);
+                if (solutionLibrary.getTotalSolutionLibraryPoints() > 0 && solutionLibrary.getBooksIds().size() > 0) {
+                    currentSolution.addLibrarySolution(solutionLibrary);
+                }
                 if (bestSolution.getScoreForSolution() < currentSolution.getScoreForSolution()) {
                     bestSolution = currentSolution;
                 }
