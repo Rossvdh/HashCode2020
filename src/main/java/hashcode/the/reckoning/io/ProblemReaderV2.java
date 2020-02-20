@@ -79,7 +79,7 @@ public class ProblemReaderV2 {
                 }
             });
             library.setListOfBooks(books);
-            library.calculateFitness(problemSet.getTotalDaysToScan());
+            library.calculateFitness(problemSet.getTotalDaysToScan(), new HashMap<>());
             libraries.add(library);
         }
 

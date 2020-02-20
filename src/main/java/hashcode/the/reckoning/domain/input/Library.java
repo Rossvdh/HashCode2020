@@ -34,7 +34,9 @@ public class Library {
         }).collect(Collectors.toList());
     }
 
-    public void calculateFitness(long nrDaysForProblem) {
+    public void calculateFitness(long nrDaysForProblem, HashMap<Long, Boolean> hasBookBeenAdded) {
+        this.listOfBooks = getDistinctBooks(hasBookBeenAdded);
+
         long daysRemaining = nrDaysForProblem - daysToSignup;
         long totalBooksThatCanBeProcesed = ((daysRemaining) * booksPerDay);
 

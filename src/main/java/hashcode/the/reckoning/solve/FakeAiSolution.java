@@ -7,6 +7,7 @@ import hashcode.the.reckoning.domain.output.Solution;
 import hashcode.the.reckoning.domain.output.SolutionLibrary;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,11 +31,15 @@ public class FakeAiSolution implements Solver {
             Library library = libariesToBeUsed.get(0);
             libariesToBeUsed.remove(0);
 
+            if (daysRemaining - library.getDaysToSignup() < 0) {
+                continue;
+            }
+
             SolutionLibrary solutionLibrary = new SolutionLibrary();
             solutionLibrary.setLibraryId(library.getId());
 
             long intBooksThatCanBeProcessed = daysRemaining * library.getBooksPerDay();
-            List<Book> listOfBooks = library.getDistinctBooks(hasBookBeenAdded);
+            List<Book> listOfBooks = library.getListOfBooks();
             if (intBooksThatCanBeProcessed > 0) {
                 for (int bookIndex = 0; bookIndex < listOfBooks.size(); bookIndex++) {
                     Book book = listOfBooks.get(bookIndex);
@@ -50,6 +55,17 @@ public class FakeAiSolution implements Solver {
                 daysRemaining -= library.getDaysToSignup();
                 currentSolution.addLibrarySolution(solutionLibrary);
             }
+            List<Library> libraries = problemSet.getLibraries();
+            for (Library libraryForFitness : libraries) {
+                libraryForFitness.calculateFitness(daysRemaining, hasBookBeenAdded);
+            }
+
+            libraries.sort(new Comparator<Library>() {
+                @Override
+                public int compare(Library o1, Library o2) {
+                    return (o2.getFitness() > o1.getFitness()) ? 1 : -1;
+                }
+            });
         }
         return currentSolution;
     }
