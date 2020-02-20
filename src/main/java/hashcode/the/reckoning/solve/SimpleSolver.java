@@ -59,11 +59,11 @@ public class SimpleSolver implements Solver {
                 if (solutionLibrary.getTotalSolutionLibraryPoints() > 0 && solutionLibrary.getBooksIds().size() > 0) {
                     currentSolution.addLibrarySolution(solutionLibrary);
                 }
-                if (bestSolution.getScoreForSolution() < currentSolution.getScoreForSolution()) {
-                    bestSolution = currentSolution;
-                }
             }
-            return currentSolution;
+
+            if (bestSolution.getScoreForSolution() < currentSolution.getScoreForSolution()) {
+                bestSolution = currentSolution;
+            }
         }
 
         return bestSolution;
