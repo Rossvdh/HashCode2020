@@ -2,7 +2,7 @@ package hashcode.the.reckoning;
 
 import hashcode.the.reckoning.domain.input.ProblemSet;
 import hashcode.the.reckoning.domain.output.Solution;
-import hashcode.the.reckoning.io.ProblemSetReader;
+import hashcode.the.reckoning.io.ProblemReader;
 import hashcode.the.reckoning.io.SolutionWriter;
 import hashcode.the.reckoning.solve.Solver;
 import hashcode.the.reckoning.solve.TickingSolver;
@@ -26,7 +26,7 @@ public class Main {
             System.out.println(filename + ".in");
 
             System.out.println("Input");
-            ProblemSetReader reader = new ProblemSetReader(filename + ".in");
+            ProblemReader reader = new ProblemReader(filename + ".in");
             ProblemSet input = reader.readFile();
 
             System.out.println("Solving");
