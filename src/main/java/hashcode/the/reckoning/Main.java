@@ -17,6 +17,11 @@ public class Main {
 
         List<String> fileList = new ArrayList<>();
         fileList.add("a_example");
+        fileList.add("b_read_on");
+        fileList.add("c_incunabula");
+        fileList.add("d_tough_choices");
+        fileList.add("e_so_many_books");
+        fileList.add("f_libraries_of_the_world");
 
         fileList.forEach(filename -> {
             System.out.println(filename + ".txt");

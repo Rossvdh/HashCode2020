@@ -51,6 +51,9 @@ public class ProblemReader {
         int libraryId = 0;
         while (iterator.hasNext()) {
             String libraryDefiningLine = iterator.next();
+            if (!iterator.hasNext()) {
+                break;
+            }
             String booksDefiningLine = iterator.next();
 
             List<Long> libraryData = splitLineBySpace(libraryDefiningLine);
