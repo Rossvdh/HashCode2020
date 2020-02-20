@@ -53,7 +53,9 @@ public class SimpleSolver implements Solver {
                         }
                     }
                 }
+                if (solutionLibrary.getBooksIds().size() >0){
                 currentSolution.addLibrarySolution(solutionLibrary);
+                }
                 if (bestSolution.getScoreForSolution() < currentSolution.getScoreForSolution()) {
                     bestSolution = currentSolution;
                 }
