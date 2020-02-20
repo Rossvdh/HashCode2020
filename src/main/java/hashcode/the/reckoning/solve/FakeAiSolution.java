@@ -63,7 +63,11 @@ public class FakeAiSolution implements Solver {
             libraries.sort(new Comparator<Library>() {
                 @Override
                 public int compare(Library o1, Library o2) {
-                    return (o2.getFitness() > o1.getFitness()) ? 1 : -1;
+                    if (o2.getFitness() > o1.getFitness()) {
+                        return 1;
+                    } else if (o2.getFitness() < o1.getFitness()) {
+                        return -1;
+                    } else return 0;
                 }
             });
         }
