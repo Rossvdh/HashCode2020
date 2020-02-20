@@ -16,6 +16,7 @@ public class Library {
     List<Book> listOfBooks;
     long daysToSignup;
     long booksPerDay;
+    long fitness;
 
     public Library(long id, long nrBooks, List<Book> listOfBooks, long daysToSignup) {
         this.id = id;
@@ -31,5 +32,28 @@ public class Library {
                 return !hasBookBeenAdded.containsKey(book.getId());
             }
         }).collect(Collectors.toList());
+    }
+
+    public void calculateFitness(long nrDaysForProblem) {
+        long daysRemaining = nrDaysForProblem - daysToSignup;
+        long totalBooksThatCanBeProcesed = ((daysRemaining) * booksPerDay);
+
+        double totalScoreForBooksToBeProcessed = 0;
+        long valueToUse =
+                totalBooksThatCanBeProcesed > listOfBooks.size() ? listOfBooks.size() : totalBooksThatCanBeProcesed;
+
+        for (int bookIndex = 0; bookIndex < listOfBooks.size(); bookIndex++) {
+            Book book = listOfBooks.get(bookIndex);
+            if (bookIndex < totalBooksThatCanBeProcesed) {
+                totalScoreForBooksToBeProcessed += book.score;
+            } else {
+                break;
+            }
+        }
+
+        double avgScorePerBook = valueToUse > 0 ? totalScoreForBooksToBeProcessed / valueToUse : 0;
+
+        fitness = (long) ((nrDaysForProblem * 1.0 / daysToSignup * 1.00) * 1.00 * totalBooksThatCanBeProcesed *
+                avgScorePerBook * 1.00);
     }
 }

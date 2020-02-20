@@ -3,7 +3,9 @@ package hashcode.the.reckoning;
 import hashcode.the.reckoning.domain.input.ProblemSet;
 import hashcode.the.reckoning.domain.output.Solution;
 import hashcode.the.reckoning.io.ProblemReader;
+import hashcode.the.reckoning.io.ProblemReaderV2;
 import hashcode.the.reckoning.io.SolutionWriter;
+import hashcode.the.reckoning.solve.FakeAiSolution;
 import hashcode.the.reckoning.solve.SimpleSolver;
 import hashcode.the.reckoning.solve.Solver;
 
@@ -27,7 +29,7 @@ public class Main {
             System.out.println(filename + ".txt");
 
             System.out.println("Input");
-            ProblemReader reader = new ProblemReader(filename + ".txt");
+            ProblemReaderV2 reader = new ProblemReaderV2(filename + ".txt");
             ProblemSet input = reader.readFile();
 
             System.out.println("Solving");
@@ -40,7 +42,7 @@ public class Main {
     }
 
     private static Solution solveProblem(ProblemSet input) {
-        Solver solution = new SimpleSolver();
+        Solver solution = new FakeAiSolution();
         return solution.solve(input);
     }
 
