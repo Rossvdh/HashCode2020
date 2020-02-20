@@ -8,4 +8,5 @@ import java.util.List;
 @Data
 public class Solution {
     // Store the actual solution and prep for printing
+
 }
