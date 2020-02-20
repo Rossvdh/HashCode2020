@@ -53,7 +53,7 @@ public class Library {
 
         double avgScorePerBook = valueToUse > 0 ? totalScoreForBooksToBeProcessed / valueToUse : 0;
 
-        fitness = (long) ((nrDaysForProblem * 1.0 / daysToSignup * 1.00) * 1.00 * totalBooksThatCanBeProcesed *
+        fitness = (long) ((1 - (daysToSignup * 1.00 / nrDaysForProblem)) * 1.00 * totalBooksThatCanBeProcesed *
                 avgScorePerBook * 1.00);
     }
 }
